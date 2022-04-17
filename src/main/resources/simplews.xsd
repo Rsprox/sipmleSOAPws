@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://my.simplews.ru" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://my.simplews.ru">
+   <xs:element name="DataRequest">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="FamilyName" type="tns:str-100">
+               <xs:annotation>
+                  <xs:documentation>Фамилия</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="FirstName" type="tns:str-100">
+               <xs:annotation>
+                  <xs:documentation>Имя</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Patronymic" type="tns:str-100" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Отчество</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="BirthDate" type="xs:date"/>
+            <xs:element name="Email" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>Электронная почта</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Product" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>Описание заявки</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Comment" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>Описание заявки</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+   <xs:element name="DataResponse">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="OrderID" type="xs:string" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>ID зарегистрированной завки</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Result" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>Результат</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Comment" type="xs:string" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Описание</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+   <xs:simpleType name="str-100">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="100"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
