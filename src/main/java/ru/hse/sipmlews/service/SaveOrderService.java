@@ -20,7 +20,6 @@ public class SaveOrderService {
     // логика обработки запроса
     public DataResponse saveAdnResponse(DataRequest request){
         DataResponse response = new DataResponse();
-        System.out.println(request.getFirstName());
         Order order = new Order(request.getFirstName(), request.getFamilyName(), request.getPatronymic(),
                 request.getBirthDate(), request.getEmail(), request.getComment());
 
