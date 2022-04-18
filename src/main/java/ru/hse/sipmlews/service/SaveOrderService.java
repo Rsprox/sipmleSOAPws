@@ -8,8 +8,6 @@ import ru.simplews.my.DataResponse;
 
 @Service
 public class SaveOrderService {
-
-
     // логика обработки запроса
     public DataResponse saveAdnResponse(DataRequest request){
         DataResponse response = new DataResponse();

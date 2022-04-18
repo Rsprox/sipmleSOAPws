@@ -32,8 +32,6 @@ public class Order extends DataRequest {
         return birthDateSTR;
     }
 
-
-
     // Конструктор
     public Order(String firstName, String familyName, String patronymic,
                  XMLGregorianCalendar birthDate, String email, String phoneNumber, String product ,String comment) {
@@ -72,7 +70,6 @@ public class Order extends DataRequest {
             throw new SQLException(e);
         }
     }
-
 
     public String toString() {
         return String.format("UUID: %s | Имя: %s | Фамилия: %s | Отчество: %s | ДатаРождения: %s | Емейл: %s | Комментарий: %s",

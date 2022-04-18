@@ -9,8 +9,6 @@ import ru.hse.sipmlews.service.SaveOrderService;
 import ru.simplews.my.DataRequest;
 import ru.simplews.my.DataResponse;
 
-import java.sql.SQLException;
-
 /*
     конфигурируем эндпоинт
  */
@@ -26,7 +24,7 @@ public class ServiceEndpoint {
     // берётся из класса запроса
     @PayloadRoot(namespace = TARGET_NAMESPACE, localPart = "DataRequest") // вызов метода обработчика по namespace и localPart
     @ResponsePayload // маппит возвращаемое значение в payload ответа
-    public DataResponse saveOrder(@RequestPayload DataRequest request) throws SQLException {
+    public DataResponse saveOrder(@RequestPayload DataRequest request){
         return service.saveAdnResponse(request);
     }
 }
