@@ -13,21 +13,16 @@ import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
-import ru.hse.sipmlews.dbwork.DBConnector;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /*
-    конфигурация сервлет бина
+    конфигурация
  */
 
 @Configuration
 @EnableWs
 public class SoapWSConfig extends WsConfigurerAdapter {
-
-    public SoapWSConfig() throws SQLException {
-    }
 
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
@@ -37,8 +32,8 @@ public class SoapWSConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean<MessageDispatcherServlet>(servlet, "/ws/*");
     }
 
-    // генерируем WSDL
-    @Bean(name = "SaveOrder")
+    // генерируем WSDL 1.1 по xsd-схеме
+    @Bean(name = "SaveOrder") // куда будем обращаться
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema schema) {
         DefaultWsdl11Definition defaultWsdl11Definition = new DefaultWsdl11Definition();
         defaultWsdl11Definition.setPortTypeName("Service");
@@ -53,7 +48,7 @@ public class SoapWSConfig extends WsConfigurerAdapter {
         return new SimpleXsdSchema(new ClassPathResource("simplews.xsd"));
     }
 
-    // валидация запроса по схеме
+    // валидация запроса по схеме и ответа?
     @Override
     public void addInterceptors(List<EndpointInterceptor> interceptors) {
         PayloadValidatingInterceptor validatingInterceptor = new PayloadValidatingInterceptor();

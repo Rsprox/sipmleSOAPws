@@ -13,8 +13,12 @@ import java.sql.SQLException;
 public class SaveOrderService {
     static DBConnector dbConnector;
 
-    public SaveOrderService() throws SQLException {
-        dbConnector = DBConnector.getInstance();
+    static {
+        try {
+            dbConnector = DBConnector.getInstance();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // логика обработки запроса
@@ -39,8 +43,7 @@ public class SaveOrderService {
     }
     // Добавление продукта в БД
     private void addProduct(Order order) throws SQLException {
-        // Создадим подготовленное выражение, чтобы избежать SQL-инъекций
-        //System.out.println("adding " + order.toString());
+        // Создадим подготовленное выражение для инсерта
         try (PreparedStatement statement = dbConnector.getConnection().prepareStatement(
                 "INSERT INTO Orders(`firstName`, `familyName`, `patronymic`, `birthDate`," +
                         " `email`, `product`, `comment`, `uuid`) " +
@@ -54,7 +57,6 @@ public class SaveOrderService {
             statement.setObject(7, order.getComment());
             statement.setObject(8, order.getUuid().toString());
             // Выполняем запрос
-            //System.out.println(statement.toString());
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -50,6 +50,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- Мавен плагин для генерации классов по xsd -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
@@ -68,6 +70,7 @@
 					<clearOutputDir>false</clearOutputDir>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 

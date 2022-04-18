@@ -28,7 +28,7 @@
             </xs:element>
             <xs:element name="Product" type="xs:string">
                <xs:annotation>
-                  <xs:documentation>Описание заявки</xs:documentation>
+                  <xs:documentation>Заказ</xs:documentation>
                </xs:annotation>
             </xs:element>
             <xs:element name="Comment" type="xs:string">

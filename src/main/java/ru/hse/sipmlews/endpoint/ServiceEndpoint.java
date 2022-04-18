@@ -14,7 +14,7 @@ import java.sql.SQLException;
 /*
     конфигурируем эндпоинт
  */
-@Endpoint
+@Endpoint // регистрирует класс как кандидата на обработку входящих сообщений
 public class ServiceEndpoint {
     public static final String TARGET_NAMESPACE="http://my.simplews.ru";
 
@@ -24,8 +24,8 @@ public class ServiceEndpoint {
 
     // вызывает метод сервиса и возвращает ответ
     // берётся из класса запроса
-    @PayloadRoot(namespace = TARGET_NAMESPACE, localPart = "DataRequest")
-    @ResponsePayload
+    @PayloadRoot(namespace = TARGET_NAMESPACE, localPart = "DataRequest") // вызов метода обработчика по namespace и localPart
+    @ResponsePayload // маппит возвращаемое значение в payload ответа
     public DataResponse saveOrder(@RequestPayload DataRequest request) throws SQLException {
         return service.saveAdnResponse(request);
     }

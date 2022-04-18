@@ -6,11 +6,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.UUID;
 
 public class Order extends DataRequest {
+
+    private UUID uuid;
+
     public UUID getUuid() {
         return uuid;
     }
-
-    private UUID uuid;
     // костыль! как-то неправильно работает грегорианский календарь из xml
     private String birthDateSTR;
 
