@@ -10,10 +10,10 @@ import java.sql.SQLException;
 public class DBConnector {
 
     // Константа, в которой хранится адрес подключения
-    private static final String CON_STR = "jdbc:sqlite:D:/REPO/test.db";
+    private static final String CON_STR = "jdbc:sqlite:D:/myProjects/Java/sipmlews/test.db";
 
     // Используем шаблон одиночка, чтобы не плодить множество
-    // экземпляров класса DbHandler
+    // экземпляров класса DBConnector
     private static DBConnector instance = null;
 
     public static synchronized DBConnector getInstance() throws SQLException {
