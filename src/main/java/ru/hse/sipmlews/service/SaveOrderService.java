@@ -21,36 +21,44 @@ public class SaveOrderService {
     public DataResponse saveAdnResponse(DataRequest request){
         DataResponse response = new DataResponse();
         Order order = new Order(request.getFirstName(), request.getFamilyName(), request.getPatronymic(),
-                request.getBirthDate(), request.getEmail(), request.getComment());
+                request.getBirthDate(), request.getEmail(), request.getProduct(), request.getComment());
 
         // инсертим запись в БД
-        addProduct(order);
-
-        response.setOrderID(order.getUuid().toString());
-        response.setResult(order.getFirstName() + ", Привет! Заказл был сохранён!");
-        response.setComment(order.getComment() + " Когда ж оно заработает((");
+        try {
+            addProduct(order);
+            response.setOrderID(order.getUuid().toString());
+            response.setResult(order.getFirstName() + ", Привет! Заказ был сохранён!");
+            response.setComment("Вы заказали - " + order.getProduct() +
+                    ". Спасибо что выбрали нас! В ближайшее время мы свяжемся с вами.");
+        } catch (Exception e) {
+            response.setResult("Что-то пошло не так :(");
+            response.setComment(e + " " + e.getMessage());
+        }
 
         return response;
     }
     // Добавление продукта в БД
-    private void addProduct(Order order) {
+    private void addProduct(Order order) throws SQLException {
         // Создадим подготовленное выражение, чтобы избежать SQL-инъекций
         //System.out.println("adding " + order.toString());
         try (PreparedStatement statement = dbConnector.getConnection().prepareStatement(
-                "INSERT INTO Orders(`firstName`, `familyName`, `patronymic` , `birthDate` , `email`, `comment`, `uuid`) " +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?)")) {
+                "INSERT INTO Orders(`firstName`, `familyName`, `patronymic`, `birthDate`," +
+                        " `email`, `product`, `comment`, `uuid`) " +
+                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?)")) {
             statement.setObject(1, order.getFirstName());
             statement.setObject(2, order.getFamilyName());
             statement.setObject(3, order.getPatronymic());
             statement.setObject(4, order.getBirthDateSTR());
             statement.setObject(5, order.getEmail());
-            statement.setObject(6, order.getComment());
-            statement.setObject(7, order.getUuid().toString());
+            statement.setObject(6, order.getProduct());
+            statement.setObject(7, order.getComment());
+            statement.setObject(8, order.getUuid().toString());
             // Выполняем запрос
             //System.out.println(statement.toString());
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new SQLException(e);
         }
     }
 }

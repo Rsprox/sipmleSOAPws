@@ -21,7 +21,8 @@ public class Order extends DataRequest {
 
 
     // Конструктор
-    public Order(String firstName, String familyName, String patronymic, XMLGregorianCalendar birthDate, String email, String comment) {
+    public Order(String firstName, String familyName, String patronymic,
+                 XMLGregorianCalendar birthDate, String email, String product ,String comment) {
         this.firstName = firstName;
         this.familyName = familyName;
         this.birthDate = birthDate;
@@ -30,6 +31,7 @@ public class Order extends DataRequest {
         this.comment = comment;
         this.uuid = UUID.randomUUID();
         this.patronymic = patronymic;
+        this.product = product;
     }
 
 
