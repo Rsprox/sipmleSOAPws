@@ -14,7 +14,8 @@ public class SaveOrderService {
     public DataResponse saveAdnResponse(DataRequest request){
         DataResponse response = new DataResponse();
         Order order = new Order(request.getFirstName(), request.getFamilyName(), request.getPatronymic(),
-                request.getBirthDate(), request.getEmail(), request.getProduct(), request.getComment());
+                request.getBirthDate(), request.getEmail(), request.getPhoneNumber(),
+                request.getProduct(), request.getComment());
 
         // инсертим запись в БД
         try {

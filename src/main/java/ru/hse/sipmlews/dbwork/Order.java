@@ -36,12 +36,13 @@ public class Order extends DataRequest {
 
     // Конструктор
     public Order(String firstName, String familyName, String patronymic,
-                 XMLGregorianCalendar birthDate, String email, String product ,String comment) {
+                 XMLGregorianCalendar birthDate, String email, String phoneNumber, String product ,String comment) {
         this.firstName = firstName;
         this.familyName = familyName;
         this.birthDate = birthDate;
         this.birthDateSTR = birthDate.toString();
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.comment = comment;
         this.uuid = UUID.randomUUID();
         this.patronymic = patronymic;
@@ -53,8 +54,8 @@ public class Order extends DataRequest {
         // Создадим подготовленное выражение для инсерта
         try (PreparedStatement statement = dbConnector.getConnection().prepareStatement(
                 "INSERT INTO Orders(`firstName`, `familyName`, `patronymic`, `birthDate`," +
-                        " `email`, `product`, `comment`, `uuid`) " +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?)")) {
+                        " `email`, `product`, `comment`, `phoneNumber`, `uuid`) " +
+                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
             statement.setObject(1, this.getFirstName());
             statement.setObject(2, this.getFamilyName());
             statement.setObject(3, this.getPatronymic());
@@ -62,7 +63,8 @@ public class Order extends DataRequest {
             statement.setObject(5, this.getEmail());
             statement.setObject(6, this.getProduct());
             statement.setObject(7, this.getComment());
-            statement.setObject(8, this.getUuid().toString());
+            statement.setObject(8, this.getPhoneNumber());
+            statement.setObject(9, this.getUuid().toString());
             // Выполняем запрос
             statement.execute();
         } catch (SQLException e) {
