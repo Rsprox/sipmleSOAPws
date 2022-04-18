@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class ServiceEndpoint {
     public static final String TARGET_NAMESPACE="http://my.simplews.ru";
 
-    // наш сервис
+    // инстанс сервиса
     @Autowired
     private SaveOrderService service;
 
