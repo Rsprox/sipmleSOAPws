@@ -14,7 +14,7 @@
   * Java 8
   * Maven
 
-**- Библиотеки:**
+**Библиотеки:**
 
     * spring-boot-starter-web-services
     * spring-boot-devtools
@@ -22,6 +22,6 @@
     * spring-boot-starter-test
     * sqlite-jdbc
 
-- Плагины для Maven:
-    * spring-boot-maven-plugin
-    * jaxb2-maven-plugin <-- генерирует классы по xsd-схеме
+**Плагины для Maven:**
+ * spring-boot-maven-plugin
+ * jaxb2-maven-plugin <-- генерирует классы по xsd-схеме
